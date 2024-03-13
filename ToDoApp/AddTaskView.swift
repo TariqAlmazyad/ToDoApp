@@ -17,10 +17,8 @@ struct AddTaskView: View {
         NavigationStack{
             Form {
                 Section {
-                    TextField("Bootcamp labs", 
-                              text: $taskTitle)
-                    TextField("write details",
-                              text: $taskDetails)
+                    TextField("Bootcamp labs",  text: $taskTitle)
+                    TextField("write details", text: $taskDetails)
                     DatePicker(selection: $dueDate) {
                         Text("Due date")
                     }
@@ -32,8 +30,7 @@ struct AddTaskView: View {
                 
                 Button {
                     let taskItem = TaskItem(title: taskTitle, details: taskDetails, dueDate: dueDate)
-                    tasks.append(taskItem)
-                    isShowingAddNewTaskView = false
+                   addNewTask(taskItem)
                 } label: {
                     Text("Add Task")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -43,6 +40,11 @@ struct AddTaskView: View {
             .navigationTitle("Add Task")
             .navigationBarTitleDisplayMode(.large)
         }
+    }
+    
+    func addNewTask(_ task: TaskItem) {
+        tasks.append(task)
+        isShowingAddNewTaskView = false
     }
     
 }

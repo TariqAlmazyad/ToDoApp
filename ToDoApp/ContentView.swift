@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-struct TaskItem: Identifiable {
-    var id: String = UUID().uuidString
-    var title: String
-    var details: String
-    var isDone: Bool = false
-    var dueDate: Date
-    var timestamp: Date = .init()
-}
-
 struct ContentView: View {
     // step 1 : create var to show/hide
     @State var isShowingAddNewTaskView: Bool = false
@@ -29,26 +20,12 @@ struct ContentView: View {
                             EditTaskView(task: task, index: index, tasks: $tasks)
                         }
                     } label: {
-                        HStack{
-                            Button(action: {
-                                
-                            }, label: {
-                                Image(systemName: task.isDone ? "checkmark.circle" :  "circle")
-                            }).buttonStyle(.borderless)
-                            VStack(alignment: .leading){
-                                Text(task.title)
-                                Text(task.details)
-                                // look for Date formatter in swift
-                                Text("\(task.dueDate.formatted(.dateTime.day().month().year()))")
-                            }
-                        }
+                        TaskItemCellView(task: task)
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button {
                             withAnimation {
-                                if let index = tasks.firstIndex(where: {$0.id == task.id}) {
-                                    tasks.remove(at: index)
-                                }
+                               deleteTask(task)
                             }
                         } label: {
                             Image(systemName: "trash")
@@ -80,8 +57,34 @@ struct ContentView: View {
         }
         
     }
+    
+    func deleteTask(_ task: TaskItem) {
+        if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+            tasks.remove(at: index)
+        }
+    }
 }
 
 #Preview {
     ContentView()
+}
+
+
+struct TaskItemCellView: View {
+    var task: TaskItem
+    var body: some View {
+        HStack{
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: task.isDone ? "checkmark.circle" :  "circle")
+            }).buttonStyle(.borderless)
+            VStack(alignment: .leading){
+                Text(task.title)
+                Text(task.details)
+                // look for Date formatter in swift
+                Text("\(task.dueDate.formatted(.dateTime.day().month().year()))")
+            }
+        }
+    }
 }
