@@ -19,20 +19,15 @@ struct TaskItem: Identifiable {
 struct ContentView: View {
     // step 1 : create var to show/hide
     @State var isShowingAddNewTaskView: Bool = false
-    @State var tasks: [TaskItem] = [
-
-    ]
-    
-    
-    
+    @State var tasks: [TaskItem] = [ ]
     var body: some View {
         NavigationStack{
             List {
                 ForEach(tasks) { task in
                     NavigationLink {
-//                        if let index = tasks.firstIndex(of: task) {
-//                            EditTaskView(task: task, index: index, tasks: $tasks)
-//                        }
+                        if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+                            EditTaskView(task: task, index: index, tasks: $tasks)
+                        }
                     } label: {
                         HStack{
                             Button(action: {
@@ -51,9 +46,9 @@ struct ContentView: View {
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button {
                             withAnimation {
-//                                if let deletedTaskIndex = tasks.firstIndex(where: {$0 == task}) {
-//                                    tasks.remove(at: deletedTaskIndex)
-//                                }
+                                if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+                                    tasks.remove(at: index)
+                                }
                             }
                         } label: {
                             Image(systemName: "trash")
