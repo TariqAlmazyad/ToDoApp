@@ -20,6 +20,19 @@ struct ContentView: View {
                     } label: {
                         Text(task)
                     }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button {
+                            withAnimation {
+                                if let deletedTaskIndex = tasks.firstIndex(where: {$0 == task}) {
+                                    tasks.remove(at: deletedTaskIndex)
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                                .tint(.red)
+                        }
+
+                    }
 
 //                        .swipeActions{
 //                            Button(action: {
