@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EditTaskView: View {
-    var task: String
+    var task: TaskItem
     var index: Int
     @State var taskTemp: String = ""
-    @Binding var tasks: [String]
+    @Binding var tasks: [TaskItem]
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
@@ -25,7 +25,7 @@ struct EditTaskView: View {
                 }
                 
                 Button {
-                   tasks[index] = taskTemp
+                    tasks[index].title = taskTemp
                     dismiss()
                 } label: {
                     Text("Update Task")
@@ -37,11 +37,12 @@ struct EditTaskView: View {
             .navigationBarTitleDisplayMode(.large)
         }
         .onAppear{
-            taskTemp = task
+            taskTemp = task.title
         }
     }
 }
 
 #Preview {
-    EditTaskView(task: "", index: 0 ,tasks: .constant([]))
+    EditTaskView(task: .init(title: "", details: "", dueDate: Date()),
+                 index: 0 ,tasks: .constant([]))
 }
