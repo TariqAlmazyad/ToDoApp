@@ -9,31 +9,38 @@ import SwiftUI
 
 struct AddTaskView: View {
     @State var taskTitle: String = ""
+    @Binding var tasks: [String]
+    @Binding var isShowingAddNewTaskView: Bool
     var body: some View {
-        Form {
-            Section {
-                TextField("Bootcamp labs", text: $taskTitle)
-            } header: {
-                Text("Add title")
-            } footer: {
-                Text("You can add title to to your task to priorities your goal  ")
-            }
-            
-            Button {
+        NavigationStack{
+            Form {
+                Section {
+                    TextField("Bootcamp labs", text: $taskTitle)
+                } header: {
+                    Text("Add title")
+                } footer: {
+                    Text("You can add title to to your task to priorities your goal  ")
+                }
                 
-            } label: {
-                Text("Add Task")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }.buttonStyle(.borderless)
+                Button {
+                    tasks.append(taskTitle)
+                    isShowingAddNewTaskView = false
+                } label: {
+                    Text("Add Task")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }.buttonStyle(.borderless)
 
+            }
+            .navigationTitle("Add Task")
+            .navigationBarTitleDisplayMode(.large)
         }
-        .navigationTitle("Add Task")
     }
 }
 
 #Preview {
     NavigationStack{
-        AddTaskView()
+        AddTaskView(tasks: .constant([]),
+                    isShowingAddNewTaskView: .constant(false))
             .navigationTitle("Add Task")
     }
 }
