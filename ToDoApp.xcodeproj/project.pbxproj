@@ -12,6 +12,7 @@
 		8367B7F22BA2192A008C9630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8367B7F12BA2192A008C9630 /* Assets.xcassets */; };
 		8367B7F52BA2192A008C9630 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8367B7F42BA2192A008C9630 /* Preview Assets.xcassets */; };
 		8367B7FC2BA21D17008C9630 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8367B7FB2BA21D17008C9630 /* AddTaskView.swift */; };
+		8367B7FE2BA22D39008C9630 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8367B7FD2BA22D39008C9630 /* EditTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		8367B7F12BA2192A008C9630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8367B7F42BA2192A008C9630 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8367B7FB2BA21D17008C9630 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		8367B7FD2BA22D39008C9630 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				8367B7ED2BA21927008C9630 /* ToDoAppApp.swift */,
 				8367B7EF2BA21927008C9630 /* ContentView.swift */,
+				8367B7FD2BA22D39008C9630 /* EditTaskView.swift */,
 				8367B7FB2BA21D17008C9630 /* AddTaskView.swift */,
 				8367B7F12BA2192A008C9630 /* Assets.xcassets */,
 				8367B7F32BA2192A008C9630 /* Preview Content */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8367B7FC2BA21D17008C9630 /* AddTaskView.swift in Sources */,
+				8367B7FE2BA22D39008C9630 /* EditTaskView.swift in Sources */,
 				8367B7F02BA21927008C9630 /* ContentView.swift in Sources */,
 				8367B7EE2BA21927008C9630 /* ToDoAppApp.swift in Sources */,
 			);
