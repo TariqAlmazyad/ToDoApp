@@ -16,7 +16,9 @@ struct ContentView: View {
             List {
                 ForEach(tasks, id:\.self) { task in
                     NavigationLink {
-                        Text(task)
+                        if let index = tasks.firstIndex(of: task) {
+                            EditTaskView(task: task, index: index, tasks: $tasks)
+                        }
                     } label: {
                         Text(task)
                     }
@@ -33,15 +35,6 @@ struct ContentView: View {
                         }
 
                     }
-
-//                        .swipeActions{
-//                            Button(action: {
-//                                
-//                            }, label: {
-//                                Image(systemName: "trash")
-//                                    .tint(.red)
-//                            })
-//                        }
                 }
             }
             .navigationTitle("To Do")
