@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TaskItem {
+struct TaskItem: Identifiable {
     var id: String = UUID().uuidString
     var title: String
     var details: String
@@ -19,24 +19,41 @@ struct TaskItem {
 struct ContentView: View {
     // step 1 : create var to show/hide
     @State var isShowingAddNewTaskView: Bool = false
-    @State var tasks: [String] = []
+    @State var tasks: [TaskItem] = [
+
+    ]
+    
+    
+    
     var body: some View {
         NavigationStack{
             List {
-                ForEach(tasks, id:\.self) { task in
+                ForEach(tasks) { task in
                     NavigationLink {
-                        if let index = tasks.firstIndex(of: task) {
-                            EditTaskView(task: task, index: index, tasks: $tasks)
-                        }
+//                        if let index = tasks.firstIndex(of: task) {
+//                            EditTaskView(task: task, index: index, tasks: $tasks)
+//                        }
                     } label: {
-                        Text(task)
+                        HStack{
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: task.isDone ? "checkmark.circle" :  "circle")
+                            }).buttonStyle(.borderless)
+                            VStack(alignment: .leading){
+                                Text(task.title)
+                                Text(task.details)
+                                // look for Date formatter in swift
+                                Text("\(task.dueDate.formatted(.dateTime.day().month().year()))")
+                            }
+                        }
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button {
                             withAnimation {
-                                if let deletedTaskIndex = tasks.firstIndex(where: {$0 == task}) {
-                                    tasks.remove(at: deletedTaskIndex)
-                                }
+//                                if let deletedTaskIndex = tasks.firstIndex(where: {$0 == task}) {
+//                                    tasks.remove(at: deletedTaskIndex)
+//                                }
                             }
                         } label: {
                             Image(systemName: "trash")
