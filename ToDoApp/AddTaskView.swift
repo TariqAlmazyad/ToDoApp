@@ -9,13 +9,21 @@ import SwiftUI
 
 struct AddTaskView: View {
     @State var taskTitle: String = ""
-    @Binding var tasks: [String]
+    @State var taskDetails: String = ""
+    @State var dueDate: Date = .init()
+    @Binding var tasks: [TaskItem]
     @Binding var isShowingAddNewTaskView: Bool
     var body: some View {
         NavigationStack{
             Form {
                 Section {
-                    TextField("Bootcamp labs", text: $taskTitle)
+                    TextField("Bootcamp labs", 
+                              text: $taskTitle)
+                    TextField("write details",
+                              text: $taskDetails)
+                    DatePicker(selection: $dueDate) {
+                        Text("Due date")
+                    }
                 } header: {
                     Text("Add title")
                 } footer: {
@@ -23,7 +31,8 @@ struct AddTaskView: View {
                 }
                 
                 Button {
-                    tasks.append(taskTitle)
+                    let taskItem = TaskItem(title: taskTitle, details: taskDetails, dueDate: dueDate)
+                    tasks.append(taskItem)
                     isShowingAddNewTaskView = false
                 } label: {
                     Text("Add Task")
@@ -35,6 +44,7 @@ struct AddTaskView: View {
             .navigationBarTitleDisplayMode(.large)
         }
     }
+    
 }
 
 #Preview {
