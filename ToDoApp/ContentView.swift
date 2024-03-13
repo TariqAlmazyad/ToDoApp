@@ -9,13 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack{
+            List {
+                ForEach(0 ..< 5) { item in
+                    Text("123")
+                        .swipeActions{
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: "trash")
+                                    .tint(.red)
+                            })
+                        }
+                }
+            }
+            .navigationTitle("To Do")
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {}, label: {
+                        Image(systemName: "plus")
+                    })
+                }
+            })
         }
-        .padding()
     }
 }
 
