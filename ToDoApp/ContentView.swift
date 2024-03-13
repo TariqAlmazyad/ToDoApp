@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct TaskItem {
+    var id: String = UUID().uuidString
+    var title: String
+    var details: String
+    var isDone: Bool = false
+    var dueDate: Date
+    var timestamp: Date = .init()
+}
+
 struct ContentView: View {
     // step 1 : create var to show/hide
     @State var isShowingAddNewTaskView: Bool = false
